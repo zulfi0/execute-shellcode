@@ -1,0 +1,42 @@
+name: Execute-Shellcode
+authors:
+  - name: sud0ku
+    handle: ''
+    link: ''
+description: Uses Execute-Shellcode to inject shellcode into the process ID of your choosing or within the context
+  of the running PowerShell process. If you're injecting custom shellcode, make sure it's in the correct format and matches
+  the architecture of the process you're injecting into. Note that You MUST specify one of the arguments url or file.
+software: S0194
+tactics:
+  - TA0005
+techniques:
+  - T1620
+background: true
+output_extension:
+needs_admin: false
+opsec_safe: true
+language: powershell
+min_language_version: '2'
+comments:
+  - http://www.exploit-monday.com
+  - https://github.com/mattifestation/PowerSploit/blob/master/CodeExecution/Invoke-Shellcode.ps1
+options:
+  - name: Agent
+    description: Agent to run module on.
+    required: true
+    value: ''
+  - name: processId
+    description: Process ID of the process you want to inject shellcode into.
+    required: True
+    value: ''
+  - name: Url
+    description: URL containing the shellcode (must be in "0x90,0x90......") Format.
+    required: false
+    value: ''
+  - name: Bin
+    description: Binary path (.bin) to load and execute.
+    required: false
+    value: ''
+script_path: code_execution/Execute-Shellcode.ps1
+advanced:
+  custom_generate: true
